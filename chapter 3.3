@@ -1,0 +1,50 @@
+---
+title: 'chapter 3.3'
+output: html_document
+---
+```{r}
+JohnsFamily <-
+  list(
+    name = "John", 
+    age = 35,
+    spouse = list(
+      name = "Mary", 
+      age = 32),
+    children = list(
+      list(
+        name = "Bill", 
+        age = 5),
+      list(
+        name = "Jane", 
+        age = 3)
+    )
+  )
+```
+
+```{r}
+JohnsFamilyCopy <- JohnsFamily
+JohnsFamilyCopy[[1]] <- "Scott"
+JohnsFamilyCopy[["name"]] <- "John"
+JohnsFamilyCopy[c(1,2)] <- list("Scott",37) # retrieve then we can replace the value under the element name
+```
+
+
+```{r}
+JohnsFamilyCopy <- JohnsFamily
+# spouse age is wrong 
+JohnsFamilyCopy$spouse[["age"]] <- 33
+#dollar sign is the list retrieval that can pot out the element name
+# the first child's name is wrong 
+JohnsFamilyCopy$children[[1]]$name <- "Tim"
+JohnsFamilyCopy[[3]][[2]] <- 33
+JohnsFamilyCopy
+```
+```{r}
+# Observation by observation
+concerts_obo <-
+  jsonlite::fromJSON("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=17", simplifyDataFrame = F)
+NewConcerts_obo <- concerts_obo
+NewConcerts_obo[[3]]$showInfo[["time"]] <- "2022/01/31 19:30:00"
+NewConcerts_obo[[3]]$showInfo[["location"]] <- "Taichung Opera House"
+```
+
