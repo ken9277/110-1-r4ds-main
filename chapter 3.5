@@ -1,0 +1,29 @@
+---
+title: "chapter 3.5"
+output: html_document
+---
+
+```{r}
+concerts_obo <-
+  jsonlite::fromJSON("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=17", simplifyDataFrame = F)
+concerts_obo [c(2,5,7)] <- NULL
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
