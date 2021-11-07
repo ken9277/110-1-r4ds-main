@@ -1,0 +1,35 @@
+---
+title: "chapter 3.5"
+output: html_document
+---
+
+```{r}
+JohnsFamily <-
+  list(
+    name = "John", 
+    age = 35,
+    spouse = list(
+      name = "Mary", 
+      age = 32),
+    children = list(
+      list(
+        name = "Bill", 
+        age = 5),
+      list(
+        name = "Jane", 
+        age = 3)
+    )
+  )
+JohnsFamilyCopy3 <- JohnsFamily
+JohnsFamilyCopy3$spouse <- NULL
+JohnsFamilyCopy3
+```
+
+
+
+
+
+
+
+
+
