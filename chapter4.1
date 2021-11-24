@@ -8,7 +8,18 @@ customerExperience_fct = factor(customerExperience)
 customerExperience_fct_factor_order <- factor(customerExperience,levels = c("very bad","bad","satisfied","happy","vey happy"),ordered = T)
 ```
 
-
+```{r} # exercise 4.2
+subsidiaries <- list()
+subsidiaries$boston <- c("2020 Oct. 13 15:00:00", "2019 Apr. 10 09:30:00") # boston time zone
+subsidiaries$mykonos <- c("14 Jan., 2021 03:27:00", "8 Aug., 2020 11:20:00") # mykonos time zone
+one_subsidiaries <- lubridate::ymd_hms(subsidiaries$boston,tz = "Asia/Dacca")
+another_subsidiaries <- lubridate::dmy_hms(subsidiaries$mykonos,tz = "Asia/Dacca")
+c(one_subsidiaries,another_subsidiaries) -> sum_subsidiaries
+lubridate::with_tz(
+  sum_subsidiaries ,
+  tz = "Asia/Dacca"
+) -> final_answer
+```
 
 
 
