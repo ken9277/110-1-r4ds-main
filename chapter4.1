@@ -8,7 +8,7 @@ customerExperience_fct = factor(customerExperience)
 customerExperience_fct_factor_order <- factor(customerExperience,levels = c("very bad","bad","satisfied","happy","vey happy"),ordered = T)
 ```
 
-```{r} # exercise 4.2
+```{r}exercise 4.2
 subsidiaries <- list()
 subsidiaries$boston <- c("2020 Oct. 13 15:00:00", "2019 Apr. 10 09:30:00") # boston time zone
 subsidiaries$mykonos <- c("14 Jan., 2021 03:27:00", "8 Aug., 2020 11:20:00") # mykonos time zone
@@ -22,7 +22,13 @@ lubridate::with_tz(
 ```
 
 
-
+```{r} 
+# exercise 4.5
+participations <- 
+list('session 3',c("session 1", "session 2", "session 3"),'session 3',c("session 2", "session 1"),c("session 3", "session 1"),c("session 3", "session 2", "session 1"),'session 2','session 1',c("session 2", "session 1", "session 3"),c("session 3", "session 1", "session 2"))
+participations1 <- unlist(participations)
+table(participations1)
+```
 
 
 
