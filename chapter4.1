@@ -30,11 +30,109 @@ participations1 <- unlist(participations)
 table(participations1)
 ```
 
+```{r}
+my_feature_different_from_other <- list(
+  "height" = list(181,191,201),
+  "weight" = 70,
+  "face" = "handsome"
+)# binding+regular name + element name + attibute +name call
+```
 
 
+```{r}
+example1 <- c("John", "Mary", "Bill")
+# goal (a,b,c,d,e,) adding two people in the list
+example1 [[4]] <- "Kevin"
+example1[[5]] <- "Tim"
+example1[c(4,5)] <- c("Kevin","Tim")
+example1
+```
+```{r}
+example3 <- c("John", "Mary", "Bill", person4="Jack")
+
+## inclusive approach
+example3[c(1, 2, 3)]
+
+## exclusive approach
+example3[-c(4)]
+
+## multiple exclusion is possible
+example3[-c(1, 4)] # negative sign can only use on the numaric cannot use on character
+```
 
 
+```{r}
+example1 <- c("John", "Mary", "Bill")
+# binding the element value with the element name that means the object with the element name won't add the new element name but will increase the element value 
+# if we have to increase the 'element name we need to retrieve the position out and give it element name and value like the underneath example 
+# so if we need to increase name and value the name haveto be with retrieval side
+example1 [[4]] <- "person4" 
+example1
+```
+```{r}
+1:3 # the same as # : 2is mean 遞增or遞減
+seq(from=1, to=3, by=1) # from 1 to 3 increase by 1 # seq 等差遞增or遞減  
+```
 
+
+```{r}
+# retrieve an non-existing element name "person4"
+# example value become => (j,m,b,k) adding ken at position 4
+example1[[4]] <- "Ken" # can use element name to replace the position 4
+example1[["person4"]] <- "Ken"
+# retrieve two non-existing element positions
+```
+
+
+```{r}
+numeric
+# declaration means bind a name with no value but its value type ==>adding value in this declaration(an empty object)
+```
+
+```{r}
+course1 <- 
+  list(
+    name="programming for data science",
+    credit=2
+  )
+```
+
+
+# there is a special method to remove in list  that there are not in other methods 
+# the method is null(with capital letter) bind with the value name 
+
+
+```{r}
+#[row , col] an extraction from data frame and the structure of the retrieval value = the source structure 
+# also can replace the value but the structure of the  replacement value need to be the same as the source (object)
+```
+
+# as function can convert the class object also can turn atomic vector into unlist 
+# unlist() function 能使 lsit 變為 atomic vector
+# r 獨特之功能 能接受向量直接運算 
+# print 輸出結果
+# sum 總和
+# which apply to only the logical vector can tell the position of true
+# [] can use logical vector to pick your value [T] 要選 [F] 不要選
+# as numeric(datetime or factor) will show hoe R stores these values
+#{} programming block can execute the command in the block 可以呈現出演算邏輯 
+
+
+```{r}
+#exercise 4.6
+factor(c('參','貮','貮','貮','壹','貮','參','貮','參','參'), levels=c('壹','貮','參')) -> number1
+class(number1)
+typeof(number1)
+as.numeric (number1) -> number2
+sum(number2)
+```
+
+```{r}
+# exercise 4.7
+factor(c('۶','۹','۸','۹','۶','۸','۸','۵','۹','۹'),levels = c("۵", "۶", "۷", "۸", "۹")) -> fct1
+as.numeric (fct1) -> conversion
+sum(conversion) -> answer
+```
 
 
 
