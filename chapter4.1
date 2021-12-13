@@ -116,6 +116,8 @@ course1 <-
 # [] can use logical vector to pick your value [T] 要選 [F] 不要選
 # as numeric(datetime or factor) will show hoe R stores these values
 #{} programming block can execute the command in the block 可以呈現出演算邏輯 
+# saveRDS(object_nmae,file:"filename.RDS")
+```{r} 
 
 
 ```{r}
@@ -134,9 +136,99 @@ as.numeric (fct1) -> conversion
 sum(conversion) -> answer
 ```
 
+# grade 代表從哪裡選取標的(retrieve from)
+# [pick] 選取標的的條件
+
+```{r}
+grades <- c(51,70,79,78,67,74,80)
+# same 7 student's gender
+gender <- c('female','female','male','male','female','male','male')
+pick <- grades > 70
+gender[pick]
+```
+
+```{r}
+dataSet1 <- 
+  data.frame(
+    school_id = c("001", "002", "003", "004"),
+    course1_grade=c(55, 83, 92, 73),
+    course2_grade=c(50, 88, 72, 77)
+  )
+```
+
+```{r}
+pick <- dataSet1$course1_grade >=80 # conditional retrieval means when the value meets the command(condition) the R would retrieve the value 
+dataSet1[[3]][pick] 
+```
+```{r}
+names(dataSet1)
+```
+```{r}
+dataSet1[pick, ] # will keep all the columns in dataSet1
+# same as
+subset(dataSet1 , course1_grade >=80)
+```
+
+```{r}
+gender = c('Female','Male','Male', 'Female')
+age = c(28,41,42,33)
+residence = c('South','South','North', 'North')
+color=c("yellow", "pink", "blue", "green")
+```
+
+```{r}
+# For those who are "Male": 
+pick$male <- gender == "Male"
+print(pick$male)
+
+# For those who lives in the "South:
+pick$south <- residence == "South"
+print(pick$south)
+```
+
+```{r}
+# For those who are "Male" 
+#   AND
+#   lives in the "South",
+pick$male_south <- 
+  pick$male & pick$south
+
+print(pick$male_south)
+
+# what are their ages?
+age[pick$male_south]
+```
 
 
 
+```{r}
+pick$maleXOsouth <-
+  xor(pick$male, pick$south)
+
+print(pick$maleXOsouth)
+```
+
+```{r}
+color[pick$male]
+color[pick$south]
+color[pick$maleOsouth]
+color[pick$maleXOsouth]
+```
+
+
+
+```{r}
+# For those who are "Male" 
+#   OR
+#   lives in the "South",
+pick$maleOsouth <- 
+  pick$male | pick$south
+
+print(pick$maleOsouth)
+
+# what are their ages?
+age[pick$maleOsouth]
+```
 
 
 
