@@ -230,6 +230,220 @@ print(pick$maleOsouth)
 age[pick$maleOsouth]
 ```
 
+# & and / | or / xor / ! not
+# any()-> 有任何...... all()-> 全是.....
+
+
+
+
+
+
+# function sort:在factor()中，排列element value or 使用table()，能將factor中，element value的個數(value number)， 由小到大
+# sort function 中，有decreasing function(遞減) ， 由大到小的排列 
+# x |> f() = f(x) means use x to do f() 
+
+
+
+```{r}
+hobby = c(
+  'sport, reading, movie',
+  'sport',
+  'movie, sport, reading',
+  'movie, Reading',
+  'sport')
+```
+
+# stringr function -> str_detect 是辨識patter(樣子形狀) 
+# stingr::coll -> 能夠使r跳脫大小寫形體的辨識(定義patter)
+```{r}
+# any one likes to read
+stringr::str_detect(hobby, "reading") # 4th is FALSE
+stringr::str_detect(hobby, stringr::coll("reading", ignore_case = T)) # 4th is TRUE
+```
+
+
+
+```{r}
+dataSet <- list(
+  list(
+    gender="male", height=178, age=32,
+    children=list(
+      list(gender="male", age=5),
+      list(gender="male", age=0))
+  ),
+  list(
+    gender="female", height=166, age=30,
+    children=list(
+      list(gender="female", age=3))
+  ),
+  list(
+    gender="male", height=170, age=42,
+    children=list(
+      list(gender="male", age=10),
+      list(gender="female", age=8))
+  ),
+  list(
+    gender="male", height=188, age=22,
+    children=list()
+  ),  
+  list(
+    gender="male", height=172, age=52,
+    children=list(
+      list(gender="female", age=25),
+      list(gender="female", age=23))
+  ),
+  list(
+    gender="female", height=160, age=42,
+    children=list(
+      list(gender="female", age=11))
+  )
+)
+```
+
+
+
+```{r}
+analysis <- list()
+analysis$number_of_children <- list()
+
+analysis$number_of_children[[1]] <-length(dataSet[[1]]$children)
+analysis$number_of_children[[2]] <-length(dataSet[[2]]$children)
+analysis$number_of_children[[3]] <-length(dataSet[[3]]$children)
+analysis$number_of_children[[4]] <-length(dataSet[[4]]$children)
+analysis$number_of_children[[5]] <-length(dataSet[[5]]$children)
+analysis$number_of_children[[6]] <-length(dataSet[[6]]$children)
+```
+
+
+
+```{r}
+analysis$number_of_children <- list()
+analysis$number_of_children <- vector("list", length=6)
+
+analysis$number_of_children[[1]] <-length(dataSet[[1]]$children)
+analysis$number_of_children[[2]] <-length(dataSet[[2]]$children)
+analysis$number_of_children[[3]] <-length(dataSet[[3]]$children)
+analysis$number_of_children[[4]] <-length(dataSet[[4]]$children)
+analysis$number_of_children[[5]] <-length(dataSet[[5]]$children)
+analysis$number_of_children[[6]] <-length(dataSet[[6]]$children)
+
+```
+
+
+# .x pattern是將重複樣態的結構，帶入不同數值，以.x代表這些不同數值，然後指定數值範圍(seq_along() -> 正確的起始點)重複帶入
+
+```{r}
+analysis <- list()
+analysis$number_of_children <- vector("list", length=6)
+for(.x in c(1, 2, 3, 4, 5, 6)){
+  # .x-pattern
+  analysis$number_of_children[[.x]] <-length(dataSet[[.x]]$children)
+}
+
+class(analysis$number_of_children) # a list
+```
+
+
+
+```{r}
+dataSet1 <- 
+  data.frame(
+    team=c('team 2','team 3','team 1','team 2','team 3','team 1','team 2','team 1','team 3','team 2','team 3','team 1','team 3','team 1','team 2'),
+    entranceYear = c(100,100,101,100,100,100,101,100,100,101,101,100,101,100,100),
+    grade=c(98,95,76,87,67,83,84,94,70,64,99,77,89,62,65)
+  )
+```
+# split 基於某個vector把object拆成所求的樣態
+```{r}
+split(dataSet1, dataSet1$team) -> grouped_dataset1
+
+View(grouped_dataset1)
+```
+
+
+```{r}
+dataSet3 <-
+  data.frame(
+    dates = c("2016-11-15", NA, NA, "1997-05-07", "1995-08-25", "2002-09-20", NA, NA, NA, "1995-07-16", "2011-06-22"),
+    grades = c(29, 53, 26, 27, 55, 69, NA, NA, 63, NA, 56),
+    genders = c("Male", "Female", "Male", "Male", "Female", "Female", NA, "Male", "Male", "Female", "Female"),
+    majors = c("economics", "economics", NA, "economics", "economics", "economics", "economics", "statistics", "law", "economics", "law")
+  )
+```
+
+
+```{r}
+# class check
+class_check <- vector("integer", length(dataSet3))
+for(.x in seq_along(dataSet3)){
+  class_check[[.x]] <- class(dataSet3[[.x]])
+}
+names(class_check) <- names(dataSet3)
+class_check
+```
+
+
+```{r}
+# NA check
+na_check <- vector("integer", length(dataSet3))
+for(.x in seq_along(dataSet3)){
+  na_check[[.x]] <- sum(is.na(dataSet3[[.x]]))
+}
+names(na_check) <- names(dataSet3)
+na_check
+```
+
+
+```{r}
+class_check <- check_class(dataSet3)
+na_check <- check_na(dataSet3)
+```
+
+
+```{r}
+# checking blocks for dataSet3
+class_check <- {
+  # class check
+  class_check <- vector("integer", length(dataSet3))
+  for(.x in seq_along(dataSet3)){
+    class_check[[.x]] <- class(dataSet3[[.x]])
+  }
+  names(class_check) <- names(dataSet3)
+  class_check # the last executed line
+}
+
+
+na_check <- {
+  # NA check
+  na_check <- vector("integer", length(dataSet3))
+  for(.x in seq_along(dataSet3)){
+    na_check[[.x]] <- sum(is.na(dataSet3[[.x]]))
+  }
+  names(na_check) <- names(dataSet3)
+  na_check # the last executed line
+}
+dataSet4 = data.frame(
+  x = c(6,10,10,6,10,6,NA,NA,3,7),
+  y = c(2,3,6,6,8,2,8,6,8,3)
+)
+
+
+check_na <- function(){
+  # NA check
+  na_check <- vector("integer", length(dataSet3))
+  for(.x in seq_along(dataSet3)){
+    na_check[[.x]] <- sum(is.na(dataSet3[[.x]]))
+  }
+  names(na_check) <- names(dataSet3)
+  na_check # the last executed line
+}
+# function definition
+check_class <- function(){...}
+check_na <- function(){...}
+
+# a long program
+
+```
 
 
 
